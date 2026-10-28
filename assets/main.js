@@ -10,9 +10,9 @@
 
   /* Mobile menu */
   const menu = $("[data-mobile-menu]"), menuBtn = $("[data-menu]");
-  const setMenu = (open) => { if (!menu) return; menu.classList.toggle("is-open", open); menu.setAttribute("aria-hidden", String(!open)); menuBtn?.setAttribute("aria-expanded", String(open)); document.body.style.overflow = open ? "hidden" : ""; if (open) $("[data-menu-close]", menu)?.focus(); else menuBtn?.focus(); };
+  const setMenu = (open) => { if (!menu) return; menu.classList.toggle("is-open", open); menu.setAttribute("aria-hidden", String(!open)); menuBtn?.setAttribute("aria-expanded", String(open)); document.body.style.overflow = open ? "hidden" : ""; if (open) $(".menu-close", menu)?.focus(); else menuBtn?.focus(); };
   menuBtn?.addEventListener("click", () => setMenu(true));
-  $("[data-menu-close]")?.addEventListener("click", () => setMenu(false));
+  $$("[data-menu-close]").forEach((b) => b.addEventListener("click", () => setMenu(false)));
   menu?.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menu?.classList.contains("is-open")) setMenu(false); });
 
